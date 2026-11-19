@@ -15,7 +15,7 @@ node src/game/wall-layout.test.mjs
 
 Every complete 30-second lap of active game time increases scrolling speed and advances the world. Height is only a score/progression measurement; it does not change backgrounds. Pausing freezes the simulation clock. Retry resets the run and world index.
 
-The first eight laps introduce eight distinct original environments. Starting with world 9, `procedural-realms.mjs` creates deterministic scenery recipes without a final-world cap or fixed eight-composition loop. Recipes vary base artwork, side-island arrangements, light, weather, clouds and particles. The finite eight source pictures remain recognizable ingredients; this is not infinite separately painted art.
+The first eight laps introduce eight distinct original environments. Starting with world 9, twelve new environment families use original full-resolution paintings: underwater coral palaces, clockwork city, volcanoes, ice cathedral, desert colossi, world tree, lunar ruins, crystals, bamboo temples, tidal ruins, luminous mushrooms and airships. Each twelve-world journey shuffles the families; adjacent worlds never share a family. Seeded landmarks and terrain create new layouts without a final-world cap. Each family has its own 1536x1024 painted background. Later visits vary framing, weather, particles and subtle procedural silhouettes while preserving sharp image rendering. Families recur, but the original eight images are no longer recycled after world 8. Open `/realm-preview.html` on the dev server to inspect any world directly.
 
 `EndlessBackground.jsx` renders independent 1536x1024 images, keeps at most two layers during a transition, and preloads the next image. See `REALM-ART.md` for image-generation details and quality limits. `sb-progress` stores the longest completed run and highest world for the WORLDS discovery panel.
 
@@ -36,3 +36,5 @@ Each wall spin triggers theme-colored stars and a praise word. The shuffled word
 ## Validation and limits
 
 Tests cover clock boundaries, height-independent world changes, 1,000 distinct deterministic scenery recipes, long climbs, collisions, wall-boost restrictions, wall color continuity, animation selection and atlas UV bounds. Real-device performance and final gameplay balance still need playtesting before commercial release.
+
+Platform challenge now increases with elapsed run time and climb height. Newly generated platforms narrow gradually from 2.6 to a minimum of 1.3 units, and fragile density increases. Every fourth platform remains a stable anchor. Existing footholds keep their size and type; the starting floor remains wide. Fragile platforms also crumble when revisited below the highest previously landed platform. Run platform-difficulty.test.mjs for progression and stability checks.

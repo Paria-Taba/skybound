@@ -6,4 +6,13 @@ Generated with the built-in ImageGen tool using the earlier eight-world concept 
 
 Worlds: Verdant Skies; Sunforged Ruins; Cloudsea Harbor; Emberwood Heights; Stormwatch Peaks; Frostbound Heights; Astral Observatory; Crown of the Sky.
 
-`realm-assets.mjs` exports the local URLs. `EndlessBackground.jsx` keeps at most two scenery layers during a 1.8-second crossfade and preloads the next base image. Later procedural variants reuse these eight images with seeded lighting, weather, cloud and distant-island layers. They are new compositions from finite artwork, not an unlimited collection of separately authored paintings.
+`realm-assets.mjs` exports the local URLs. `EndlessBackground.jsx` keeps at most two scenery layers during a 1.8-second crossfade and preloads the next base image. Worlds after these first eight use the new expansion artwork described below.
+
+
+## Endless environment expansion
+
+Worlds 9 onward use twelve new 1536x1024 illustrated environment backgrounds in `assets/realms/expansion/`. `environment-assets.mjs` maps them to biome identities. `biomes.mjs` shuffles all twelve families per journey, avoids adjacent repeats, and generates seeded scenery details. `GeneratedWorld.jsx` supplies subtle optional distant landmarks for later visits. Original images are preserved for worlds 1-8. Families recur with new compositions; this is not unlimited unique paintings or art styles.
+
+The backgrounds were made with the built-in image_gen tool. Exact prompts are saved in WORLD-ART-PROMPTS.json. They are used at full source resolution with no CSS blur, contact-sheet cropping, or pre-downscaling.
+
+Preview every world at `/realm-preview.html` using the world-number input. The atlas is also a production build entry. Runtime keeps at most two scenery layers during transitions and preloads the next world.

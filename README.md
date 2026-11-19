@@ -118,3 +118,8 @@ The tests cover jumping, wall boosts, repeated-wall-jump restrictions, difficult
 ## Current Status
 
 This is a playable project under development. Keyboard and touch controls are implemented, but commercial release still requires real-device testing and further art and animation polish. Online accounts, remote leaderboards, real-money payments, a backend, and app-store builds are not implemented. Saved data belongs to the current browser only.
+
+
+## Endless World Expansion
+
+After the eight original environments, twelve new illustrated environment families appear in shuffled groups. Every clock lap continues to advance the world with no final cap. Later visits vary scenery framing, distant landmarks and weather. Families recur; this is finite authored artwork with procedural variation. Preview any world at `http://localhost:5173/realm-preview.html` while the development server is running. See `src/game/REALM-ART.md` for artwork and `src/game/WORLD-ART-PROMPTS.json` for exact generation prompts.

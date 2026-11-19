@@ -1,0 +1,3 @@
+export const WORLD_FADE_SECONDS=2.4;
+export function gainAt(fade,time){if(!fade)return 0;const t=Math.max(0,Math.min(1,(time-fade.start)/fade.duration)),mix=(1-Math.cos(Math.PI*t))/2;return Math.sqrt(Math.max(0,fade.from**2*(1-mix)+fade.to**2*mix))}
+export function fadeLayer(layer,to,now,duration=WORLD_FADE_SECONDS){const from=layer.fade?gainAt(layer.fade,now):0,fade={from,to,start:now,duration};layer.fade=fade;const param=layer.gain.gain;param.cancelScheduledValues(now);param.setValueAtTime(from,now);for(let i=1;i<=48;i++)param.linearRampToValueAtTime(gainAt(fade,now+duration*i/48),now+duration*i/48);return fade}

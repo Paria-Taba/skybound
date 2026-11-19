@@ -1,0 +1,13 @@
+import abyssal from'./assets/realms/expansion/abyssal.png';
+import clockwork from'./assets/realms/expansion/clockwork.png';
+import volcanic from'./assets/realms/expansion/volcanic.png';
+import glacial from'./assets/realms/expansion/glacial.png';
+import desert from'./assets/realms/expansion/desert.png';
+import heartwood from'./assets/realms/expansion/heartwood.png';
+import lunar from'./assets/realms/expansion/lunar.png';
+import crystal from'./assets/realms/expansion/crystal.png';
+import bamboo from'./assets/realms/expansion/bamboo.png';
+import sunken from'./assets/realms/expansion/sunken.png';
+import fungal from'./assets/realms/expansion/fungal.png';
+import skyharbor from'./assets/realms/expansion/skyharbor.png';
+export const ENVIRONMENT_IMAGES={abyssal,clockwork,volcanic,glacial,desert,heartwood,lunar,crystal,bamboo,sunken,fungal,skyharbor};

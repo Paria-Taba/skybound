@@ -1,0 +1,5 @@
+import assert from'node:assert/strict';import{createRun,stepRun}from'./engine.mjs';import{WALL_INNER_X,WALL_SKIN,noriWallRadius}from'./arena.mjs';
+function clear(s){assert.ok(Math.abs(s.x)+noriWallRadius(s)<=WALL_INNER_X-WALL_SKIN+1e-9,'Visible sprite must remain inside the wall trim')}
+for(const side of[-1,1])for(const dt of[1/120,1/30,.1])for(let frame=0;frame<120;frame++){const s=createRun();s.x=side*4.4;s.y=10;s.vx=side*50;s.vy=4;s.coyote=0;s.spin=frame/120*.55;s.facing=side;stepRun(s,{left:side<0,right:side>0,dash:frame%2===0},dt);clear(s);assert.ok(s.vx*side<=0,'Contact must cancel outward speed')}
+for(const side of[-1,1]){const s=createRun();s.x=side*4.4;s.y=3;s.coyote=0;stepRun(s,{jump:true},1/120);assert.equal(s.spinCount,1);assert.ok(s.vx*side<0,'Wall jump must launch away');clear(s);for(let i=0;i<66;i++){stepRun(s,{},1/120);clear(s)}}
+console.log('Passed: no wall penetration through animation/spin, high speeds, dash or varied frame steps; both wall boosts still launch away.');

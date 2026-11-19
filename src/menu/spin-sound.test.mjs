@@ -1,0 +1,3 @@
+import assert from'node:assert/strict';import{buildSpinSound}from'./spin-sound.mjs';import{AUDIO_PROFILES,BIOME_AUDIO}from'./audio-profiles.mjs';
+for(const profile of[...AUDIO_PROFILES,...Object.values(BIOME_AUDIO)]){for(let variant=0;variant<3;variant++){const s=buildSpinSound(profile,variant);assert.ok(s.duration<.7);for(const c of[s.left,s.right]){let energy=0;for(const n of c){assert.ok(Number.isFinite(n)&&Math.abs(n)<=.24);energy+=n*n}assert.ok(energy>1);assert.equal(c[0],0);assert.equal(c.at(-1),0)}}}
+console.log('Passed: all twenty themes have three short, bounded spin cues with clean beginnings and endings.');

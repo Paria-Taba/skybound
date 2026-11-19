@@ -8,3 +8,6 @@ assert.equal(noriFrame({...base,spin:.55}).frame,0);assert.equal(noriFrame({...b
 assert.deepEqual(noriFrame(base),noriFrame({...base}),'Frozen game state must freeze animation');
 for(let row=0;row<4;row++)for(let frame=0;frame<6;frame++){const uv=atlasUV(row,frame);assert.ok(uv.offset.every(n=>n>0&&n<1));assert.ok(uv.offset.every((n,i)=>n+uv.repeat[i]<1))}
 console.log('Passed: idle/walk/run/jump/fall/spin selection, advancing frames, pause stability, and all 24 atlas UV bounds.');
+
+// Airborne velocity passes through zero at the apex: never flash a grounded pose.
+for(const vy of [.21,.1,.001,0,-.001,-.1,-.21]){const p=noriFrame({...base,coyote:-.1,vy});assert.equal(p.row,3);assert.notEqual(p.action,"idle");assert.notEqual(p.action,"run")}

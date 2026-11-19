@@ -1,0 +1,7 @@
+import assert from'node:assert/strict';import{makePlatform,createRun,stepRun}from'./engine.mjs';
+const batch=time=>Array.from({length:200},(_,i)=>makePlatform(i+8,time));let previousWidth=Infinity,previousCount=-1;
+for(const time of[0,60,150,300,600,3600]){const ps=batch(time),width=ps.reduce((a,p)=>a+p.w,0)/ps.length,count=ps.filter(p=>p.kind==='fragile').length;assert.ok(width<=previousWidth);assert.ok(count>=previousCount);previousWidth=width;previousCount=count;assert.ok(ps.every(p=>p.w>=1.3));for(const p of ps){if(p.id%4===0)assert.equal(p.kind,'safe');assert.ok(Math.abs(p.x-makePlatform(p.id-1,time).x)<3.4)}}
+assert.ok(batch(600).filter(p=>p.kind==='fragile').length>batch(0).filter(p=>p.kind==='fragile').length);
+const run=createRun(),old=run.platforms.map(p=>({id:p.id,w:p.w,kind:p.kind}));run.time=300;run.top=60;run.y=60;run.storm=-100;stepRun(run,{},1/120);for(const p of run.platforms){const prior=old.find(o=>o.id===p.id);if(prior){assert.equal(p.w,prior.w);assert.equal(p.kind,prior.kind)}else assert.ok(p.w<2)}
+const falling=createRun();falling.land=99;falling.platforms=[{...makePlatform(9),x:0,y:0,kind:'fragile'}];falling.y=.001;falling.vy=-1;stepRun(falling,{},1/120);assert.ok(falling.platforms[0].crumble>0,'Fragile platforms must react even below the highest visited platform');
+assert.equal(makePlatform(0,10000).w,9.3);console.log('Passed: narrower platforms, increasing fragile density, safe anchors, unchanged visible footholds and fragile landing behavior.');
