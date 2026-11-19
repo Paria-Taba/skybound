@@ -23,3 +23,8 @@ Validation:
 Stage entry plays a 1.45-second ascending fanfare matching the destination theme. The stage transition effect tracks the last stage, so initial load, rerenders, pause and run reset do not replay it. Entry at game-over is suppressed. Listen with NEW STAGE in the world atlas after enabling sound.
 
 Stormwatch Peaks (world 5) includes a locally synthesized continuous stereo rain layer and two soft rolling thunder events per 24-second loop, mixed into its existing theme buffer. No wind layer or extra network audio dependency is added. Weather follows the same volume, mute, pause and world-crossfade controls. Preview directly at /realm-preview.html?world=5, then enable LISTEN. Other world profiles are unchanged.
+
+Game-over introduction: on a fatal fall, gameplay enters a noninteractive dying phase and plays a 1.5-second synthesized cartoon vowel groan with a smooth descending voice. The result dialog opens after 2000ms, after the sound finishes. Ambience remains available during the cue, then follows the normal result-screen pause. Muting/effects settings are respected; restart and unmount cancel pending result timers. Preview the sound with FALL in the world atlas.
+
+The updated fall cue uses voiced harmonics and moving vowel formants, with a slower attack and no impact/plop. Its playback gain is 1.15 (previously 0.9), with a normalized 0.32 peak and the existing master volume/compressor.
+The final fall effect now uses rubberduck's CC0 recorded creature groan, followed by a soft ground thump and dust puff at 0.95s. See FALL-SOUND-CREDITS.md. The result delay remains 2000ms.
